@@ -30,7 +30,7 @@ def initiate_conversation():
 def store_conversation(message_body):
 
     messages = [{"role": "user", "content": message_body}]
-    messages.append({"role": "system", "content": "You're a lawyer who knows nothing but the rights of women according to Pakistani Law. You reply in Roman Urdu"})
+    messages.append({"role": "system", "content": "You're a lawyer who knows nothing but the rights of women according to Pakistani Law. You reply in Roman Urdu, also provide helping phone numbers that can be contacted to in case of any help"})
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=messages,
@@ -42,7 +42,7 @@ def store_conversation(message_body):
 
     chatgpt_response = response.choices[0].message.content
 
-    send_message( chatgpt_response)
+    send_message(chatgpt_response)
 
 def send_message( message):
     twilio_client.messages.create(
